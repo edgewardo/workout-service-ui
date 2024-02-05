@@ -5,7 +5,7 @@ import { Person } from '../person';
 @Component({
   selector: 'app-person-location',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   template: `
   <section class="listing">
     <h2 class="listing-heading">{{ myperson.firstName }} {{ myperson.lastName}}</h2>

@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PersonLocationComponent } from '../person-location/person-location.component';
 import { Person } from '../person';
+import { PersonService } from '../person.service';
 
 @Component({
   selector: 'app-person',
@@ -24,23 +25,10 @@ import { Person } from '../person';
   styleUrl: './person.component.css'
 })
 export class PersonComponent {
-  readonly baseUrl = 'https://angular.io/assets/images/tutorials/faa';
+  personList: Person[] = [];
+  personService: PersonService = inject(PersonService);
 
-  personList: Person[] = [
-    {
-      id: 1,
-      firstName: 'Eric',
-      lastName: 'Ward',
-      height: 68,
-      weight: 200,
-    },
-    {
-      id: 2,
-      firstName: 'Sandy',
-      lastName: 'Ward',
-      height: 64,
-      weight: 190,
-    },
-
-  ];
+  constructor() {
+    this.personList = this.personService.getAllPersons();
+  }
 }
